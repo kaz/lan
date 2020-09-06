@@ -1,0 +1,50 @@
+delete interfaces ethernet eth0 address
+delete interfaces ethernet eth1 address
+
+set interfaces ethernet eth4 ipv6 address autoconf
+set interfaces ethernet eth4 pppoe 0 user-id <E>hF4Djvl1PDMg1VwSAQdAXNQlLbdiO5q6ZWZBumRR8PQKXMPBvqpNWFVoi9lNpiUwSzk+tj641shtPvblIoWseU46u6SOurwFGbE8qU3PiL1xddr04mhrrAu44DK/p7sx0lgB95JsfLPGtncIuKF/W1IhhlP4g7OZniNHrQCEUJTNdyL5A5lsc4Cac0vY/uiMLXgbmsaGCGO8OppiutM5lYHgKLFvk/A3hYvyQoWWzIV1E5BKC4hOzPGb</E>
+set interfaces ethernet eth4 pppoe 0 password <E>hF4Djvl1PDMg1VwSAQdAuTCnZWCxIcVFLp0cSldTkALzLKVh291zpHNx0HY1D3UwVj1Cp5rRxd4eUHOzCgRVu3N1QpmEiTZiAHZ16q6UKFT6ZEWJeAyzTxw1t3seR86z0kQBz2PQ81rab00BnR4aLjY9+HczZ/pHQIr1HcBNJ2XtsxvSmDew5NdSa240Y9rFY8oOF5akEwsfxFWQUpS2ZfSBqu18HA==</E>
+set interfaces ethernet eth4 pppoe 0 default-route none
+
+set interfaces ipv6-tunnel v6tun0 encapsulation ipip6
+set interfaces ipv6-tunnel v6tun0 remote-ip 2001:f60:0:200::1:1
+set interfaces ipv6-tunnel v6tun0 local-ip <E>hF4Djvl1PDMg1VwSAQdAzA3LR53M+kLDhR/Q/Fv2hwugWYsg3ZI8VLqjGStnPhgwle14le6amQWFdXqoTB3DGFPholRbjq8gRKKyjCHbbzilX8WSfhB4i1WXnJpSwiyo0mAB5CgzFBxG6WK6PZi7JNTj/Nw32pJNfUjS6+vIld2tTkYdgsD9RIVi8YmzMAy97gT61BZeXk0KdzfztmqMe+ZtUQrYY/pku+DqSWvUWRH4id3J7mkigTUu3qwWtXZeBs0=</E>
+
+set interfaces switch switch0 address 192.168.1.1/24
+set interfaces switch switch0 switch-port interface eth0
+set interfaces switch switch0 switch-port interface eth1
+set interfaces switch switch0 switch-port interface eth2
+set interfaces switch switch0 switch-port interface eth3
+
+set interfaces switch switch0 ipv6 address eui64 <E>hF4Djvl1PDMg1VwSAQdAzA3LR53M+kLDhR/Q/Fv2hwugWYsg3ZI8VLqjGStnPhgwle14le6amQWFdXqoTB3DGFPholRbjq8gRKKyjCHbbzilX8WSfhB4i1WXnJpSwiyo0mAB5CgzFBxG6WK6PZi7JNTj/Nw32pJNfUjS6+vIld2tTkYdgsD9RIVi8YmzMAy97gT61BZeXk0KdzfztmqMe+ZtUQrYY/pku+DqSWvUWRH4id3J7mkigTUu3qwWtXZeBs0=</E>/64
+set interfaces switch switch0 ipv6 router-advert prefix ::/64
+set interfaces switch switch0 ipv6 router-advert send-advert true
+set interfaces switch switch0 ipv6 router-advert name-server 2404:1a8:7f01:a::3
+set interfaces switch switch0 ipv6 router-advert name-server 2404:1a8:7f01:b::3
+
+set protocols static interface-route 0.0.0.0/0 next-hop-interface v6tun0
+
+set service dhcp-server disabled false
+set service dhcp-server shared-network-name LAN subnet 192.168.1.0/24 default-router 192.168.1.1
+set service dhcp-server shared-network-name LAN subnet 192.168.1.0/24 dns-server 192.168.1.1
+set service dhcp-server shared-network-name LAN subnet 192.168.1.0/24 start 192.168.1.3 stop 192.168.1.254
+set service dhcp-server shared-network-name LAN subnet 192.168.1.0/24 static-mapping WSR-5400AX6 ip-address 192.168.1.2
+set service dhcp-server shared-network-name LAN subnet 192.168.1.0/24 static-mapping WSR-5400AX6 mac-address <E>hF4Djvl1PDMg1VwSAQdA36BF3f+o0wHOtcDy1F26xe6FDuauhwONQXpCDJENKXIwiRD9auvvaXxH8+CJl9Zz+omKnXKJDBvGJON/6EFxo/eyGURhyUidDhumSU7pi0G70k0BKC42QoJDwJ+vmCdObIldfjQCH85FFtqHniI1b5a+d7FRqvjjek/MrOLsbqrCP4xwuOZccb9pBStkLi+d7rj3NAHmXxWICya1E5vc9w==</E>
+
+set service dns forwarding listen-on switch0
+
+set system login user kaz level admin
+set system login user kaz full-name "Kazuki Sawada"
+set system login user kaz authentication plaintext-password <E>hF4Djvl1PDMg1VwSAQdAyw1wZ2Bf3tuTJrDAlj5PKk2UC+XBiSm7siG/n04Dlk4w62fRw1+yF//znMj/nOJ0qs1n/rIizb3QhSSKZjuAb1xr4GbjtyvAmbF4VEWwuk5n0nwBSEI9q67kgsewgw1Z0aEo5JCXp4moKGK6tREu3LbOf+8e77SmsceY9grHHotbMaRP6kk+LbVZmvIkx8s4KdsqQNxLomhUPKcqsbeWUmZLXW6HyXIJuo+colmNlcxret+b5Q5nG0n1qynRwOuir/V0cexmHOstWF/zL+hJ</E>
+set system login user kaz authentication public-keys key1 type ssh-ed25519
+set system login user kaz authentication public-keys key1 key AAAAC3NzaC1lZDI1NTE5AAAAIPKlZKEWlSBuZcT407R2XQNNwwQ2LXEHFV54NMpMlBV8
+
+set system name-server 2404:1a8:7f01:a::3
+set system name-server 2404:1a8:7f01:b::3
+
+delete system ntp
+set system ntp server 2404:1a8:1102::a
+set system ntp server 2404:1a8:1102::b
+set system ntp server 2404:1a8:1102::c
+
+set system time-zone Asia/Tokyo
