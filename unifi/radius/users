@@ -1,0 +1,9 @@
+kaz Cleartext-Password := "<E>hF4Djvl1PDMg1VwSAQdAjLe5pC0FMsA6NkzL50eroMg4uF4cWftf4rjBu7S/7VkwvutwxqDtwdZc2qXXQ5udz120jbXSS4k4pBbZZQG3RBBMfOKDn0cCDFg0ZsnzuOcJ0ngBIUvCqqE7ZSWlnl05QEb8BAlL/qPioriVv4rhUjzax500RJVOD6fcHvJ1uf/S9TzyqIV03O6d7xKBYkDNcxIo5dH/C/ticmmJX7rYq61EyYGW7chtdgLcOQkxE5oaSrm7C17adKFDqnE3GYuU0Ihk+w+RFFio8ks=</E>"
+	Tunnel-Type = VLAN,
+	Tunnel-Medium-Type = IEEE-802,
+	Tunnel-Private-Group-Id = "1001"
+
+guest Cleartext-Password := "<E>hF4Djvl1PDMg1VwSAQdAoJFg45mVj0SkfdsIgqk3NvDC8XmdrlOMJlU7PELzGE4w2mdiZXqOtn8XmMjA+U8gpvX7HE7W7agNOkCrZigDRrXNGN017I3Zzf6ZX1WTRtpF0kYB5mlk8/VsFZ9o5vP0dlGFpXEXsxPpV2OpziSao9Vh1WVZrfpPP9hSyXo04DlayZdoFZZYPwdg3vwuMYT2Hn3cuF6cXfCj</E>"
+	Tunnel-Type = VLAN,
+	Tunnel-Medium-Type = IEEE-802,
+	Tunnel-Private-Group-Id = "1003"

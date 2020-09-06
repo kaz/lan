@@ -1,0 +1,22 @@
+version: "3"
+
+volumes:
+  data:
+
+services:
+
+  controller:
+    image: linuxserver/unifi-controller
+    network_mode: host
+    restart: always
+    volumes:
+      - data:/config
+
+  radius:
+    build: radius
+    network_mode: host
+    restart: always
+    volumes:
+      - ./radius/users:/etc/raddb/users:ro
+      - ./radius/eap:/etc/raddb/mods-available/eap:ro
+      - ./radius/clients.conf:/etc/raddb/clients.conf:ro

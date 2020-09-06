@@ -1,0 +1,75 @@
+#15 1 18 0
+login password encrypted UAA5ft6tOe.qDW0ZiNs5itXsn6u3ZB59
+administrator password encrypted X4TA0ysfR5.tgU3gAfoGDzxEivnlVfaU
+login user kaz encrypted uEnnUYmrvEvQEyWWm7QwD4Hig1UylnfM
+user attribute administrator=off connection=off gui-page=dashboard
+user attribute kaz login-timer=86400
+console character ja.utf8
+console columns 4096
+console lines infinity
+ip route default gateway tunnel 1 weight 2147483647 hide gateway pp 1 weight 1 hide
+ipv6 prefix 1 ra-prefix@lan2::/64
+ip lan1 address 192.168.0.254/24
+ip lan1 secure filter in 101 801 999
+ip lan1 secure filter out 102 802 999
+vlan lan1/1 802.1q vid=1001
+ip lan1/1 address 192.168.1.254/24
+ipv6 lan1/1 address ra-prefix@lan2::<E>hF4Djvl1PDMg1VwSAQdAq6Gi4cUuMoCy/fPyr5KgC6yM7RxTheixTCHC6ewgzWswsfSldfqS26uy0VrQQJ4osIJFbRoIyzBmSKenaaf0bUlaSF9NxUXC7PCwUXKqZzQS0k0BTduSg86meOfYmGuZDcmLVEH5hCNeYlP0Ja/JLiiRRftY5tdLOO6OGYA9OMGtn4Ee5mb4jnPgyJ4ZS8f2OxLTzvCeSgPxamhllp/Rjg==</E>/64
+ipv6 lan1/1 rtadv send 1 o_flag=on
+ipv6 lan1/1 dhcp service server
+vlan lan1/2 802.1q vid=1002
+ip lan1/2 address 192.168.2.254/24
+vlan lan1/3 802.1q vid=1003
+ip lan1/3 address 192.168.3.254/24
+ip lan1/3 secure filter in 201 801 999
+ip lan1/3 secure filter out 202 802 999
+ipv6 lan2 dhcp service client ir=on
+pp disable all
+pp select 1
+ pp keepalive interval 30 retry-interval=30 count=12
+ pp always-on on
+ pppoe use lan2
+ pppoe auto disconnect off
+ pp auth accept pap chap
+ pp auth myname <E>hF4Djvl1PDMg1VwSAQdAZ0j4DvETU+1rw29z/4xXbg9RMkHbTj9IBMIj7bQCMSkwAF8XiwcURUHd038eFCwttm+M/ky7lFQJaXs2mzhg7bKAvtGpFFSYBHIEEOqLO8J+0lgBPtNsYmMNNoejC4f+h3qlQILOHdSKSXyUph7h8oe9xLkIj9UQOtRPckfUvvp01+YXPbrvoXymbPyn1kFo5XJhcYvCHjbdLHu9YLeBjSt97b6ZldbbEIkN</E> <E>hF4Djvl1PDMg1VwSAQdA2t7R72TvDLzD6yjUHhRdl7FAaDop2mf1a66xngvW6H8wMcqMm/D9s81AJsWbEdP7qmWK+jHjyY+AASH6IFmJXAC9dxp9MbsCaUcGLNIQAqJo0kQBC7LR+ehxkaLI0IGlY3DTZXTgiKP8fCZjFS0S+6Po0OwYq1W6Dzj+azPsIPUc7Laf+CHNGCCu6j0bLXMJ0gVgMZW7+g==</E>
+ ppp lcp mru on 1454
+ ppp ipcp ipaddress on
+ ppp ipcp msext on
+ ppp ccp type none
+ ip pp nat descriptor 1
+ pp enable 1
+no tunnel enable all
+tunnel select 1
+ tunnel encapsulation ipip
+ tunnel endpoint name dgw.xpass.jp fqdn
+ tunnel enable 1
+ip filter 101 pass * 192.168.0.254/32
+ip filter 102 pass 192.168.0.254/32 *
+ip filter 201 pass * 192.168.3.254/32
+ip filter 202 pass 192.168.3.254/32 *
+ip filter 801 reject * 192.168.0.0/16
+ip filter 802 reject 192.168.0.0/16 *
+ip filter 999 pass * *
+nat descriptor type 1 masquerade
+telnetd service off
+dhcp service server
+dhcp server rfc2131 compliant except remain-silent
+dhcp scope 1 192.168.0.1-192.168.0.253/24
+dhcp scope 1001 192.168.1.1-192.168.1.253/24
+dhcp scope 1002 192.168.2.1-192.168.2.253/24
+dhcp scope 1003 192.168.3.1-192.168.3.253/24
+dhcp scope bind 1 192.168.0.251 ethernet <E>hF4Djvl1PDMg1VwSAQdA5p9tPg2hcpHUCpg4ptklJHDUM7J1cLMMImQx24Tub1AwgOO5wX7VUelhWVORJGHXmgLKhq0tucQfd3EJ8iywXC1Vl/d6aT2ckyh/nqM8wenK0k0BPEp9CqPqJgZl0W4LPeDkGgFacrbc3yj3WQRsnJd+SZErziKHT33AmQASDMaJoIwQqtqdqDXcNr06DC+xQ45VV+AIYHGZgx21yndWoQ==</E>
+dhcp scope bind 1 192.168.0.252 ethernet <E>hF4Djvl1PDMg1VwSAQdAh+w0ea01lrqTtYSjbCGNISkfTmhtTuR4wIgt/uc4oQAwyyn3jOuurTA0wN5V/6Z0L0BzMmmrG62Y1JZCzvEjpgFtsKsjyJ/VzQvEYUTS0Hdq0k0BQi6r5yErj/zwVU4QTHz4mn9CsScHCYtWbm24Y6io1pk6/KeOn1n1ETIcwtXHyc9p8bO2kN6RDcx9nFXfbfL6iFKwbK4TLl7Xu2I8vg==</E>
+dhcp scope bind 1 192.168.0.253 <E>hF4Djvl1PDMg1VwSAQdAmP6IZ0uTosfcxwAGX4+1QgfxAUdDgPhvyLrJ1YFiViAwPTxUHaUBDCnFwzJGvtt9/F9cyLh+DiXhIfhqE4XJg+ZVn7+gaIrnNLFd8HWaC/Lk0k0BmeliS/+RIkdNLeWNf293Fc+UmhudTBteqMz+wk7tf4zATWY5r/+So6Ga2uZdVMCvosRwkAMmvshLsCRGYZQEq7wJzvTROIIbSnYrfg==</E>
+dhcp scope bind 1001 192.168.1.253 <E>hF4Djvl1PDMg1VwSAQdAmP6IZ0uTosfcxwAGX4+1QgfxAUdDgPhvyLrJ1YFiViAwPTxUHaUBDCnFwzJGvtt9/F9cyLh+DiXhIfhqE4XJg+ZVn7+gaIrnNLFd8HWaC/Lk0k0BmeliS/+RIkdNLeWNf293Fc+UmhudTBteqMz+wk7tf4zATWY5r/+So6Ga2uZdVMCvosRwkAMmvshLsCRGYZQEq7wJzvTROIIbSnYrfg==</E>
+dhcp scope bind 1002 192.168.2.253 <E>hF4Djvl1PDMg1VwSAQdAmP6IZ0uTosfcxwAGX4+1QgfxAUdDgPhvyLrJ1YFiViAwPTxUHaUBDCnFwzJGvtt9/F9cyLh+DiXhIfhqE4XJg+ZVn7+gaIrnNLFd8HWaC/Lk0k0BmeliS/+RIkdNLeWNf293Fc+UmhudTBteqMz+wk7tf4zATWY5r/+So6Ga2uZdVMCvosRwkAMmvshLsCRGYZQEq7wJzvTROIIbSnYrfg==</E>
+dns host lan
+dns server select 1 dhcp lan2 edns=on any .
+dns server select 2 pp 1 edns=on any . restrict pp 1
+schedule at 1 */* 04:00:00 * ntpdate ntp.jst.mfeed.ad.jp syslog
+httpd host lan1
+sshd service on
+sshd host lan1
+sshd host key generate 20102 z+7hPGIESwja7UIVPdUJM6CcMO05uRUaqLNo/pcmnDgkp8tr5r6ss4QWBAP9+a7Wb0UC6pCuzPUv6ph+IBNwvRMHEo8NcYLQ+j8WsGQs/yexOPTHjpgaWbITdsqQjNSV+yQQJm+RxehXJEQHdVFjxQBbQvyiU6BO0Nuhsm8kj6J7ncyRfqZ7TXT0dzBKrbwmTj9KWR6UUrqFimWMEU5bkIYJZS+YMRYQIPa0l+sl35lMuJrEkWrvFuqQrClWCrBDSRaqWbYtR8R5W7rT9twAYdKJVsZaKKM9V1T/qJnY/+F2INpwGsJm/J/ikYo6SqIjRSWPHfSVeYqVNqWwwyQFMIpPoj8DFUNz0sQJLitqZq5VDGm0U7cPdcP7FY2iagNn3zj5mSZXmOX0XsoylALFEmW6GFX+R3HBTFmQheFW+tC4A3sV+HRZT6GkqALfXT9VkM9X4ZvxdeKhc9/cFeqXuLshIK1/aaZTMftJv0TBX45vODDrQ8b+jvZ4vbxXwslmkRWh5BHhPwXC5nfEnXCDlQjYM3W7jCIjs55eD+FGNz5EmZP3BFwuM4jGYyI+rpItLpLLefn38IQkltbxiw0UM1zaOUehnzwYLyirdKKZCpznYJcnpRVOgvDjj0n9x1TXSMdUIySzuF2v7Rd8N/25HEZ28bQWN84cwssO0X7VB706wsurieT0gZUCyFxyxZECIICsfTeI5Vsy3e33RJ8zuxwP1VgaYyJxQW3LWUvvd6ATXLv2+EfpMVZ9mW8AYpajY9GTQlW6a+HsHMDoBpFBnjOSFKf82NdO6xVEIaTtCJofXRvylqmTyTJuNN9Mn3vNtY9GCYs7IEky/p+f715vGJUKEmukEUoqWEa04EZmzJXrBfPjxzlu2Xb5g/SnItOXguaGfCtFnz1qCjcXTJTlmJj3/p9kbpMIKtV2ZwXrV+/rXCRpdcNXQjGEyMEGLrT5WsIakNSztSfjBIg5QNPlZWfRAQG4BPzb+4KFiH2c5cEUy9IvAXOvmPP3y27X2rzvieBUyTU5eB5rIjMMKCmmp1ZRFpfrTF0HFvXNu7HqF/rqQ4te8DASP4yljDCc1zd/o8WL6j/yXKye1Fp/P3vgXgk9hG0YCsIL91702Nsuxed1UJN18ifjYa506PcSXkeENW22N4MQfZlEKgyW9sHP7QRTb48rWIVmwUuXIkPo+K1/17NvTGkXBYE1sYHWRRX6Kcure2gRcJnWfBdbxGIln9jouto2DM8ImmkiUuuSazgiLhSoJSIqIQRfgy0d8T7FipCR5DBkLpADHpK/4vEmwEV8QTk+UtWbkMZ3lx6BG3c4aLX6r/1j4cI8EOdS9xVOaImlzj+B0nTP/ov+sRoVmOalV4Fs99U798nnBtCToRhx49sVKuGL1IxufusL4irYhkXwPpawuH/Z6Uqk0hobQT7S741kt8d3Bbs8vkwy8WEyOWxwXlTp68VqlXdEFaJsOj+gQhKQNwkdo7PzkT1KHVPqEeX36FV7VT6p0R5V7p15gIGnZQ+/Ow7rYF65XOqsse1If7edJ0DU6CDrcvaHKTo+r6W8KRNJ65U2KssfLV3t+rtSR2mKhfYMld8rIpoB q0BtgGoBjUkJ/cJvWx/qIFicfMz8qd45c9aK5lY/cH9eR46qAj+Ezk7B4rIPbYynPB9ZU27HPx/QeMRO3qWZ0uytJ5DCKqPkZaqo0AMGH6MDy+yiE6tNkcgT8gL3K1Gg1FZO+kmXJogGXFxe/j0+DBYQ3GUBSBgw+HhTRlIAqFAy/zbUxPJtdpyL6dviliF2Qza65HhJ7HIbz0pq0pqA3QVBP3m19JacKquc+zmUJhYPjgCV/DxN7MRj1GG/7IiZHi/y7LP87YeFkjGgI4bRAs2pXB6YohxrO6RxlX/YDlDIlKbSib6/PmaFueRTTCFMcAK8JHtR/l4s3xxuEbDNPtSVfp8NEIyBYb1vJCenURsa0kMc5QKxM4U94oAeRFVQ2cbXpQKPdd2yvmyH9K9uZt/vfhDHcKRSACYR9JWy0+6ol28GculRoo7+AQyE3It8n/UXcrxhN6b5KjCN3BoTUykbZ1qDmhFWjMT7XAiHlY/KxbdFq6BQ1E2HFIMgyhOXZPxrYbDmobruYohIfdngYPDHZ+oZoc1X6LUSuvG7JQMrn0RhVxvPwec/25AXhVBpxcbLyTEJP6dbYhKPk9mwkG8Wwzto3UydZ9wLwf6ei2Ok1Ci5cjipem2BagrcTWCULVLzKSuwkTRgfKovzsJT7evhRQsYr6NqvJdKRNRGgG/0lzreRiyDM1RPLkUmVditzmu2KQqSFLXAocEAsHOhKUnA5hvK9YXQL4uJWpdYcIbK0+XHWEoZYKrmmXVSkG96GQh0zIuYR7PdvJ/VJoNbm3Zbh6PwYw4jyPsZtCfXSDxWpIEaxPJtxqXQfTAgKPI9+lO5wCEsDjDXiHNSVPNztk1GJizebKsNj2LlXSDMasxB8AaxY40r8u6L8Lx3wVeYguTIEx3Na095JUUConu1Qrr8tDRblH5bVb0duE+BqXtaycAmtbViA6kpqc+9l1e1BluWwSb41NIf5A9/dtgLhvWQW7J1dWnonH21elXCTduFKowJHrl6uZFKtGEpk0vfgPUlccOeiVo8/s1WFScXs1fJuF1apTbN5qHUwdxyWe2jimnz16ptukpvgC5f5OjrTkvXaaevQotK2UWU5kSgTW54BGl7DRWwuvoUcWL0DUA=
+sftpd host lan1
+statistics traffic on
