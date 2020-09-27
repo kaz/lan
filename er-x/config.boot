@@ -4,10 +4,12 @@ interfaces {
         speed auto
     }
     ethernet eth1 {
+        disable
         duplex auto
         speed auto
     }
     ethernet eth2 {
+        disable
         duplex auto
         speed auto
     }
@@ -30,16 +32,6 @@ interfaces {
         switch-port {
             interface eth0 {
                 vlan {
-                    pvid 1001
-                }
-            }
-            interface eth1 {
-                vlan {
-                    pvid 1001
-                }
-            }
-            interface eth2 {
-                vlan {
                     vid 1001
                     vid 1002
                     vid 1003
@@ -47,7 +39,9 @@ interfaces {
             }
             interface eth3 {
                 vlan {
-                    pvid 1001
+                    vid 1001
+                    vid 1002
+                    vid 1003
                 }
             }
             interface eth4 {
