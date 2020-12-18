@@ -10,8 +10,8 @@ console lines infinity
 ip route default gateway pp 1 filter 100080 100443 gateway tunnel 1
 ipv6 prefix 1 ra-prefix@lan2::/64
 ip lan1 address 192.168.0.254/24
-ip lan1 secure filter in 101 801 999
-ip lan1 secure filter out 102 802 999
+ip lan1 secure filter in 200101 200801 200999
+ip lan1 secure filter out 200102 200802 200999
 vlan lan1/1 802.1q vid=1001
 ip lan1/1 address 192.168.1.254/24
 ipv6 lan1/1 address ra-prefix@lan2::{{8911c4f6f94124d79e940002534e88ee}}/64
@@ -21,8 +21,8 @@ vlan lan1/2 802.1q vid=1002
 ip lan1/2 address 192.168.2.254/24
 vlan lan1/3 802.1q vid=1003
 ip lan1/3 address 192.168.3.254/24
-ip lan1/3 secure filter in 201 801 999
-ip lan1/3 secure filter out 202 802 999
+ip lan1/3 secure filter in 200201 200801 200999
+ip lan1/3 secure filter out 200202 200802 200999
 ipv6 lan2 dhcp service client ir=on
 pp disable all
 pp select 1
@@ -46,15 +46,15 @@ tunnel select 1
  tunnel encapsulation ipip
  tunnel endpoint name dgw.xpass.jp fqdn
  tunnel enable 1
-ip filter 101 pass * 192.168.0.254/32
-ip filter 102 pass 192.168.0.254/32 *
-ip filter 201 pass * 192.168.3.254/32
-ip filter 202 pass 192.168.3.254/32 *
-ip filter 801 reject * 192.168.0.0/16
-ip filter 802 reject 192.168.0.0/16 *
-ip filter 999 pass * *
 ip filter 100080 pass 192.168.0.250 * tcp www *
 ip filter 100443 pass 192.168.0.250 * tcp https *
+ip filter 200101 pass * 192.168.0.254/32
+ip filter 200102 pass 192.168.0.254/32 *
+ip filter 200201 pass * 192.168.3.254/32
+ip filter 200202 pass 192.168.3.254/32 *
+ip filter 200801 reject * 192.168.0.0/16
+ip filter 200802 reject 192.168.0.0/16 *
+ip filter 200999 pass * *
 nat descriptor type 1 masquerade
 nat descriptor masquerade static 1 100080 192.168.0.250 tcp www
 nat descriptor masquerade static 1 100443 192.168.0.250 tcp https
