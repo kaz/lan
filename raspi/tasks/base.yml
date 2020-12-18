@@ -18,19 +18,3 @@
     name: "{{item}}"
   loop:
     - docker
-
-- copy:
-    dest: /etc/systemd/network/{{item}}.network
-    content: |
-      [Match]
-      Name={{item}}*
-
-      [Network]
-      DHCP=ipv4
-      MulticastDNS=yes
-
-      [DHCPv4]
-      ClientIdentifier=mac
-  loop:
-    - en
-    - eth

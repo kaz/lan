@@ -1,0 +1,38 @@
+- file:
+    path: /etc/systemd/network/{{item}}.network
+    state: absent
+  loop:
+    - en
+    - eth
+
+- copy:
+    dest: /etc/systemd/network/{{item.interface}}.network
+    content: |
+      [Match]
+      Name={{item.interface}}
+
+      [Network]
+      DHCP=ipv4
+      MulticastDNS=yes
+      {{item.custom}}
+
+      [DHCPv4]
+      ClientIdentifier=mac
+  loop:
+    - interface: eth0
+      custom: VLAN=eth0.1001
+    - interface: eth0.1001
+      custom: ""
+
+- copy:
+    dest: /etc/systemd/network/{{item.interface}}.{{item.vlan}}.netdev
+    content: |
+      [NetDev]
+      Name={{item.interface}}.{{item.vlan}}
+      Kind=vlan
+
+      [VLAN]
+      Id={{item.vlan}}
+  loop:
+    - interface: eth0
+      vlan: 1001
