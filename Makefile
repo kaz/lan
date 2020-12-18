@@ -2,11 +2,12 @@
 noop:
 
 .PHONY: encrypt decrypt
-encrypt decrypt: secrets.pm
-	perl enc.pl $@
+encrypt decrypt: secrets.yml
+	python secrets.py $@
 
-secrets.pm:
+secrets.yml:
 	gpg --output $@ --decrypt $@.gpg
 
-secrets.pm.gpg:
-	gpg --default-recipient-self --encrypt secrets.pm
+.PHONY: secrets.yml.gpg
+secrets.yml.gpg:
+	gpg --default-recipient-self --encrypt secrets.yml

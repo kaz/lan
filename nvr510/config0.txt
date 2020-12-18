@@ -14,7 +14,7 @@ ip lan1 secure filter in 101 801 999
 ip lan1 secure filter out 102 802 999
 vlan lan1/1 802.1q vid=1001
 ip lan1/1 address 192.168.1.254/24
-ipv6 lan1/1 address ra-prefix@lan2::<E>hF4Djvl1PDMg1VwSAQdAq6Gi4cUuMoCy/fPyr5KgC6yM7RxTheixTCHC6ewgzWswsfSldfqS26uy0VrQQJ4osIJFbRoIyzBmSKenaaf0bUlaSF9NxUXC7PCwUXKqZzQS0k0BTduSg86meOfYmGuZDcmLVEH5hCNeYlP0Ja/JLiiRRftY5tdLOO6OGYA9OMGtn4Ee5mb4jnPgyJ4ZS8f2OxLTzvCeSgPxamhllp/Rjg==</E>/64
+ipv6 lan1/1 address ra-prefix@lan2::{{8911c4f6f94124d79e940002534e88ee}}/64
 ipv6 lan1/1 rtadv send 1 o_flag=on
 ipv6 lan1/1 dhcp service server
 vlan lan1/2 802.1q vid=1002
@@ -31,7 +31,7 @@ pp select 1
  pppoe use lan2
  pppoe auto disconnect off
  pp auth accept pap chap
- pp auth myname <E>hF4Djvl1PDMg1VwSAQdAZ0j4DvETU+1rw29z/4xXbg9RMkHbTj9IBMIj7bQCMSkwAF8XiwcURUHd038eFCwttm+M/ky7lFQJaXs2mzhg7bKAvtGpFFSYBHIEEOqLO8J+0lgBPtNsYmMNNoejC4f+h3qlQILOHdSKSXyUph7h8oe9xLkIj9UQOtRPckfUvvp01+YXPbrvoXymbPyn1kFo5XJhcYvCHjbdLHu9YLeBjSt97b6ZldbbEIkN</E> <E>hF4Djvl1PDMg1VwSAQdA2t7R72TvDLzD6yjUHhRdl7FAaDop2mf1a66xngvW6H8wMcqMm/D9s81AJsWbEdP7qmWK+jHjyY+AASH6IFmJXAC9dxp9MbsCaUcGLNIQAqJo0kQBC7LR+ehxkaLI0IGlY3DTZXTgiKP8fCZjFS0S+6Po0OwYq1W6Dzj+azPsIPUc7Laf+CHNGCCu6j0bLXMJ0gVgMZW7+g==</E>
+ pp auth myname {{dad580a589283b352eefab418b51c324}} {{e0654f4cfe7e029373a243b86fc0d71c}}
  ppp lcp mru on 1454
  ppp ipcp ipaddress on
  ppp ipcp msext on
@@ -58,12 +58,12 @@ dhcp scope 1 192.168.0.1-192.168.0.253/24
 dhcp scope 1001 192.168.1.1-192.168.1.253/24
 dhcp scope 1002 192.168.2.1-192.168.2.253/24
 dhcp scope 1003 192.168.3.1-192.168.3.253/24
-dhcp scope bind 1 192.168.0.250 ethernet <E>hF4Djvl1PDMg1VwSAQdAXUjphmYYXWdnbwGIMTLxoH7OYKsZ5Hyi0KUC3Vm8dgMwUT0POKiNCyW3MXzWdDxhTHcWOoCPb/exyhmM3+OUP5hgyF637MbjIyIym/ha1/L10k0B0Q7zJ2MOGuNLqSdyj9N9VhpqyHBDZyL4ZXo6UKZ2FsPQJzFX3G5w8ErJvUdv7Yz/555G4asxK1Nff8JLOMMC+wFBfOfTTWbM2JF1OQ==</E>
-dhcp scope bind 1 192.168.0.251 ethernet <E>hF4Djvl1PDMg1VwSAQdAFU4whc/qVyCkynZOphfWM9JsMvju6MieuEXFYSBRfRowXHdSvEPFnvlyncImA0haxvqWLG9apwbIMW3vqaPOwchXZh4WNXTdVtCQRqrmVq4+0k0BYq5yAYXqOpyAFgIjZn+7dt7LQwTg2LFtHvaG76ksPVO7JoaKqmpuwgX5tviyY6gSE967UnXvgS/+ls8WnZVsFYp3aMVbQ88FNmwsOQ==</E>
-dhcp scope bind 1 192.168.0.252 ethernet <E>hF4Djvl1PDMg1VwSAQdAh+w0ea01lrqTtYSjbCGNISkfTmhtTuR4wIgt/uc4oQAwyyn3jOuurTA0wN5V/6Z0L0BzMmmrG62Y1JZCzvEjpgFtsKsjyJ/VzQvEYUTS0Hdq0k0BQi6r5yErj/zwVU4QTHz4mn9CsScHCYtWbm24Y6io1pk6/KeOn1n1ETIcwtXHyc9p8bO2kN6RDcx9nFXfbfL6iFKwbK4TLl7Xu2I8vg==</E>
-dhcp scope bind 1 192.168.0.253 <E>hF4Djvl1PDMg1VwSAQdAmP6IZ0uTosfcxwAGX4+1QgfxAUdDgPhvyLrJ1YFiViAwPTxUHaUBDCnFwzJGvtt9/F9cyLh+DiXhIfhqE4XJg+ZVn7+gaIrnNLFd8HWaC/Lk0k0BmeliS/+RIkdNLeWNf293Fc+UmhudTBteqMz+wk7tf4zATWY5r/+So6Ga2uZdVMCvosRwkAMmvshLsCRGYZQEq7wJzvTROIIbSnYrfg==</E>
-dhcp scope bind 1001 192.168.1.253 <E>hF4Djvl1PDMg1VwSAQdAmP6IZ0uTosfcxwAGX4+1QgfxAUdDgPhvyLrJ1YFiViAwPTxUHaUBDCnFwzJGvtt9/F9cyLh+DiXhIfhqE4XJg+ZVn7+gaIrnNLFd8HWaC/Lk0k0BmeliS/+RIkdNLeWNf293Fc+UmhudTBteqMz+wk7tf4zATWY5r/+So6Ga2uZdVMCvosRwkAMmvshLsCRGYZQEq7wJzvTROIIbSnYrfg==</E>
-dhcp scope bind 1002 192.168.2.253 <E>hF4Djvl1PDMg1VwSAQdAmP6IZ0uTosfcxwAGX4+1QgfxAUdDgPhvyLrJ1YFiViAwPTxUHaUBDCnFwzJGvtt9/F9cyLh+DiXhIfhqE4XJg+ZVn7+gaIrnNLFd8HWaC/Lk0k0BmeliS/+RIkdNLeWNf293Fc+UmhudTBteqMz+wk7tf4zATWY5r/+So6Ga2uZdVMCvosRwkAMmvshLsCRGYZQEq7wJzvTROIIbSnYrfg==</E>
+dhcp scope bind 1 192.168.0.250 ethernet {{87ebbd4b5bb635196652d3545b8178ed}}
+dhcp scope bind 1 192.168.0.251 ethernet {{a09b1b6c463216f47d4ccae909c13a67}}
+dhcp scope bind 1 192.168.0.252 ethernet {{72d8593ab88ea8fe2dc653d70282a307}}
+dhcp scope bind 1 192.168.0.253 {{854c56a7d6919d3b1ddab09b9889f276}}
+dhcp scope bind 1001 192.168.1.253 {{854c56a7d6919d3b1ddab09b9889f276}}
+dhcp scope bind 1002 192.168.2.253 {{854c56a7d6919d3b1ddab09b9889f276}}
 dns host lan
 dns server select 1 dhcp lan2 edns=on any .
 dns server select 2 pp 1 edns=on any . restrict pp 1
