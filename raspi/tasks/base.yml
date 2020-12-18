@@ -1,0 +1,35 @@
+- hostname:
+    name: Pamela
+
+- pacman:
+    state: latest
+    update_cache: yes
+    name:
+      - docker
+      - fish
+      - python
+      - rsync
+      - sudo
+
+- systemd:
+    state: started
+    enabled: yes
+    name: "{{item}}"
+  loop:
+    - docker
+
+- copy:
+    dest: /etc/systemd/network/{{item}}.network
+    content: |
+      [Match]
+      Name={{item}}*
+
+      [Network]
+      DHCP=ipv4
+      MulticastDNS=yes
+
+      [DHCPv4]
+      ClientIdentifier=mac
+  loop:
+    - en
+    - eth

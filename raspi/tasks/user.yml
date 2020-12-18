@@ -1,0 +1,29 @@
+- user:
+    name: "{{user}}"
+    password: "!"
+    groups: docker
+    append: yes
+
+- copy:
+    dest: /home/{{user}}/.bash_profile
+    content: |
+      if [ -x "$(command -v fish)" ]; then
+        exec fish
+      fi
+
+- file:
+    path: /home/{{user}}/.ssh
+    state: directory
+    mode: 0700
+    owner: "{{user}}"
+    group: "{{user}}"
+
+- get_url:
+    url: https://github.com/{{user}}.keys
+    dest: /home/{{user}}/.ssh/authorized_keys
+    mode: 0600
+
+- copy:
+    dest: /etc/sudoers.d/{{user}}
+    content: |
+      {{user}} ALL=(ALL) NOPASSWD: ALL
