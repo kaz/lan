@@ -23,6 +23,7 @@ vlan lan1/3 802.1q vid=1003
 ip lan1/3 address 192.168.3.254/24
 ip lan1/3 secure filter in 200201 200801 200999
 ip lan1/3 secure filter out 200202 200802 200999
+ipv6 lan2 secure filter in 300101 300801 300999
 ipv6 lan2 dhcp service client ir=on
 pp disable all
 pp select 1
@@ -58,6 +59,9 @@ ip filter 200999 pass * *
 nat descriptor type 1 masquerade
 nat descriptor masquerade static 1 100080 192.168.0.250 tcp www
 nat descriptor masquerade static 1 100443 192.168.0.250 tcp https
+ipv6 filter 300101 pass * * established
+ipv6 filter 300801 reject * * tcp
+ipv6 filter 300999 pass * * *
 telnetd service off
 dhcp service server
 dhcp server rfc2131 compliant except remain-silent
