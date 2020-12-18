@@ -1,0 +1,13 @@
+- file:
+    path: /opt/unifi/{{ item.path }}
+    state: directory
+    mode: "{{ item.mode }}"
+  with_filetree: ../../unifi/
+  when: item.state == "directory"
+
+- template:
+    src: "{{ item.src }}"
+    dest: /opt/unifi/{{ item.path }}
+    mode: "{{ item.mode }}"
+  with_filetree: ../../unifi/
+  when: item.state == "file"

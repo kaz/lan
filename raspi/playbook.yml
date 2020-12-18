@@ -5,3 +5,4 @@
     - import_tasks: tasks/user.yml
       vars:
         user: user
+    - import_tasks: tasks/unifi.yml
