@@ -2,8 +2,12 @@
   become: yes
   tasks:
     - import_tasks: tasks/base.yml
+      tags: base
     - import_tasks: tasks/network.yml
+      tags: network
     - import_tasks: tasks/user.yml
+      tags: user
       vars:
-        user: user
+        user: kaz
     - import_tasks: tasks/unifi.yml
+      tags: unifi
