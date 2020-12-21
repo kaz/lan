@@ -11,3 +11,5 @@
         user: kaz
     - import_tasks: tasks/unifi.yml
       tags: unifi
+    - import_tasks: tasks/mastodon.yml
+      tags: mastodon

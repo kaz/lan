@@ -1,0 +1,32 @@
+- file:
+    path: /opt/mastodon/tls
+    state: directory
+
+- file:
+    path: /opt/mastodon/{{ item.path }}
+    state: directory
+    mode: "{{ item.mode }}"
+  with_filetree: ../../mastodon/
+  when: item.state == "directory"
+
+- template:
+    src: "{{ item.src }}"
+    dest: /opt/mastodon/{{ item.path }}
+    mode: "{{ item.mode }}"
+  with_filetree: ../../mastodon/
+  when: item.state == "file"
+
+- openssl_privatekey:
+    path: /opt/mastodon/tls/key.pem
+    type: ECC
+    curve: secp256r1
+
+- openssl_csr:
+    path: /opt/mastodon/tls/csr.pem
+    privatekey_path: /opt/mastodon/tls/key.pem
+
+- openssl_certificate:
+    path: /opt/mastodon/tls/crt.pem
+    csr_path: /opt/mastodon/tls/csr.pem
+    privatekey_path: /opt/mastodon/tls/key.pem
+    provider: selfsigned
