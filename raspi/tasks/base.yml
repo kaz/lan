@@ -18,3 +18,9 @@
     name: "{{item}}"
   loop:
     - docker
+
+- ini_file:
+    path: /etc/mkinitcpio.conf
+    section: null
+    option: MODULES
+    value: (bcm_phy_lib broadcom mdio_bcm_unimac genet)
