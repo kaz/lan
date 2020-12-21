@@ -25,3 +25,4 @@
     section: null
     option: MODULES
     value: (bcm_phy_lib broadcom mdio_bcm_unimac genet)
+    no_extra_spaces: yes
