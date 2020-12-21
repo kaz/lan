@@ -8,6 +8,7 @@
       - docker
       - docker-compose
       - fish
+      - git
       - python
       - rsync
       - sudo
