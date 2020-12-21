@@ -28,7 +28,7 @@ services:
     image: sekai/mastodon
     restart: always
     env_file: .env.production
-    command: sh -c "rm -f /mastodon/tmp/pids/server.pid; bundle exec rails s -p 3000"
+    command: bash -c "rm -f /mastodon/tmp/pids/server.pid; bundle exec rails s -p 3000"
     networks:
       - external_network
       - internal_network
