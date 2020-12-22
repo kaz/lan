@@ -7,7 +7,7 @@ user attribute kaz login-timer=86400
 console character ja.utf8
 console columns 4096
 console lines infinity
-ip route default gateway pp 1 filter 100080 100443 gateway tunnel 1
+ip route default gateway pp 1 filter 100443 gateway tunnel 1
 ipv6 prefix 1 ra-prefix@lan2::/64
 ip lan1 address 192.168.0.254/24
 ip lan1 secure filter in 200101 200801 200999
@@ -37,17 +37,16 @@ pp select 1
  ppp ipcp ipaddress on
  ppp ipcp msext on
  ppp ccp type none
+ ip pp secure filter in 400001 400002 400003 400004 400005 400006 400007 400008 400009 400010 400011 400012 400013 400014 400015 200999
  ip pp nat descriptor 1
  netvolante-dns use pp server=1 auto
- netvolante-dns auto hostname pp server=1 on
- netvolante-dns hostname auto 1 server=1 {{a84ec2076af9a32288c4782cfca06b0e}}.auto.netvolante.jp
+ netvolante-dns hostname host pp server=1 {{a84ec2076af9a32288c4782cfca06b0e}}.netvolante.jp
  pp enable 1
 no tunnel enable all
 tunnel select 1
  tunnel encapsulation ipip
  tunnel endpoint name dgw.xpass.jp fqdn
  tunnel enable 1
-ip filter 100080 pass 192.168.0.250 * tcp www *
 ip filter 100443 pass 192.168.0.250 * tcp https *
 ip filter 200101 pass * 192.168.0.254/32
 ip filter 200102 pass 192.168.0.254/32 *
@@ -56,9 +55,23 @@ ip filter 200202 pass 192.168.3.254/32 *
 ip filter 200801 reject * 192.168.0.0/16
 ip filter 200802 reject 192.168.0.0/16 *
 ip filter 200999 pass * *
+ip filter 400001 pass 173.245.48.0/20 * tcp * https
+ip filter 400002 pass 103.21.244.0/22 * tcp * https
+ip filter 400003 pass 103.22.200.0/22 * tcp * https
+ip filter 400004 pass 103.31.4.0/22 * tcp * https
+ip filter 400005 pass 141.101.64.0/18 * tcp * https
+ip filter 400006 pass 108.162.192.0/18 * tcp * https
+ip filter 400007 pass 190.93.240.0/20 * tcp * https
+ip filter 400008 pass 188.114.96.0/20 * tcp * https
+ip filter 400009 pass 197.234.240.0/22 * tcp * https
+ip filter 400010 pass 198.41.128.0/17 * tcp * https
+ip filter 400011 pass 162.158.0.0/15 * tcp * https
+ip filter 400012 pass 104.16.0.0/12 * tcp * https
+ip filter 400013 pass 172.64.0.0/13 * tcp * https
+ip filter 400014 pass 131.0.72.0/22 * tcp * https
+ip filter 400015 reject * * tcp * https
 nat descriptor type 1 masquerade
-nat descriptor masquerade static 1 100080 192.168.0.250 tcp www
-nat descriptor masquerade static 1 100443 192.168.0.250 tcp https
+nat descriptor masquerade static 1 443 192.168.0.250 tcp https
 ipv6 filter 300101 pass * * established
 ipv6 filter 300801 reject * * tcp
 ipv6 filter 300999 pass * * *
