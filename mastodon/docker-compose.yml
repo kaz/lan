@@ -80,7 +80,7 @@ services:
       - external_network
     volumes:
       - ./tls:/etc/nginx/tls:ro
-      - ./nginx.conf:/etc/nginx/conf.d/mastodon.conf:ro
+      - ./nginx:/etc/nginx/conf.d:ro
       - ./public/system:/home/mastodon/live/public/system:ro
 
 networks:
