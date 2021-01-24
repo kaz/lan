@@ -77,20 +77,28 @@ service {
         port 22
         protocol-version v2
     }
+    unms {
+        disable
+    }
 }
 system {
+    analytics-handler {
+        send-analytics-report true
+    }
+    crash-handler {
+        send-crash-report true
+    }
     host-name EdgeRouter-X-5-Port
     login {
         user kaz {
             authentication {
-                encrypted-password $5$mK3YfCV6JiWIqWFy$r3yBi2JzUpIFremfRdETfyHP7IXNCOYVAVp8nYF6EuD
+                encrypted-password $5$O.ZZbDwGKlzFmC/z$bi.thBF6CphnCcI61UZbH76Uc6DdiqzOR6npxIH5Kr3
                 plaintext-password ""
-                public-keys key1 {
+                public-keys main-key {
                     key AAAAC3NzaC1lZDI1NTE5AAAAIPKlZKEWlSBuZcT407R2XQNNwwQ2LXEHFV54NMpMlBV8
                     type ssh-ed25519
                 }
             }
-            full-name "Kazuki Sawada"
             level admin
         }
     }
@@ -113,5 +121,5 @@ system {
 
 
 /* Warning: Do not remove the following line. */
-/* === vyatta-config-version: "config-management@1:conntrack@1:cron@1:dhcp-relay@1:dhcp-server@4:firewall@5:ipsec@5:nat@3:qos@1:quagga@2:suspend@1:system@4:ubnt-pptp@1:ubnt-udapi-server@1:ubnt-unms@1:ubnt-util@1:vrrp@1:vyatta-netflow@1:webgui@1:webproxy@1:zone-policy@1" === */
-/* Release version: v2.0.8-hotfix.1.5278088.200305.1641 */
+/* === vyatta-config-version: "config-management@1:conntrack@1:cron@1:dhcp-relay@1:dhcp-server@4:firewall@5:ipsec@5:nat@3:qos@1:quagga@2:suspend@1:system@5:ubnt-l2tp@1:ubnt-pptp@1:ubnt-udapi-server@1:ubnt-unms@2:ubnt-util@1:vrrp@1:vyatta-netflow@1:webgui@1:webproxy@1:zone-policy@1" === */
+/* Release version: v2.0.9.5346345.201028.1647 */
