@@ -1,0 +1,10 @@
+- hosts: all
+  become: yes
+  tasks:
+    - user:
+        name: alarm
+        state: absent
+        remove: yes
+    - user:
+        name: root
+        password: "!"
