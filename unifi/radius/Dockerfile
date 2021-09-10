@@ -1,9 +1,9 @@
 FROM alpine
 
-RUN apk --no-cache add openssl && \
-    openssl dhparam -out dh 2048 && \
-    openssl ecparam -genkey -name prime256v1 -out key.pem && \
-    openssl req -new -x509 -key key.pem -days 2048 -extensions v3_ca -subj "/C=JP/CN=lan.sysad.net/" -out cert.pem
+RUN apk --no-cache add openssl
+RUN openssl dhparam -out dh 2048
+RUN openssl ecparam -genkey -name prime256v1 -out key.pem
+RUN openssl req -new -x509 -key key.pem -days 2048 -extensions v3_ca -subj "/C=JP/S=Kanagawa/L=Kawasaki/CN=network.sysad.net/" -out cert.pem
 
 FROM alpine
 
